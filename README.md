@@ -1,3 +1,34 @@
-# BeerAdviser
+# Beer Adviser 2026
 
-![ezgif-1-0b9dbd4a82](https://user-images.githubusercontent.com/61725029/221399962-73f7d9a7-1037-438d-ac01-00dc6f67df47.gif)
+A fun, motion-heavy web rebuild of the original **Beer Adviser** Android app (`com.hfad.beeradviser`).
+
+Pick a house — Kingfisher, Bira, Budweiser, or Tuborg — hit **Find Beer!**, and get the same expert picks as the APK, plus mood matching, a taste DNA quiz, a cellar search, and a personal vault.
+
+## Run locally
+
+```bash
+npm install
+npm run dev
+```
+
+Then open the printed local URL (default `http://localhost:5173`).
+
+## Build
+
+```bash
+npm run build
+npm run preview
+```
+
+The original APK is available in the site as a download (`public/beeradviser.apk`).
+
+## Deploy (Netlify)
+
+```bash
+npm run build
+npx netlify-cli deploy --dir dist --no-build --prod
+```
+
+Or click [Deploy to Netlify](https://app.netlify.com/start/deploy?repository=https://github.com/Ramesh0708/BeerAdviser).
+
+Drink responsibly. 18+ only.
