@@ -22,4 +22,13 @@ npm run preview
 
 The original APK is available in the site as a download (`public/beeradviser.apk`).
 
+## Deploy (Netlify)
+
+```bash
+npm run build
+npx netlify-cli deploy --dir dist --no-build --prod
+```
+
+Or click [Deploy to Netlify](https://app.netlify.com/start/deploy?repository=https://github.com/Ramesh0708/BeerAdviser).
+
 Drink responsibly. 18+ only.
