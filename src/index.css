@@ -611,6 +611,32 @@ em {
   background: linear-gradient(#fff6d6, #c47a1a);
 }
 
+.pour-glass .bubble {
+  animation: rise 1.2s ease-in infinite;
+}
+
+.pour-glass .bubble.b2 {
+  animation-delay: 0.2s;
+}
+
+.pour-glass .bubble.b3 {
+  animation-delay: 0.4s;
+}
+
+@keyframes rise {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  40% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-48px);
+    opacity: 0;
+  }
+}
+
 @media (max-width: 900px) {
   .hero,
   .house-grid,
@@ -618,8 +644,17 @@ em {
     grid-template-columns: 1fr;
   }
 
+  .nav {
+    width: min(1120px, calc(100% - 16px));
+    flex-wrap: wrap;
+  }
+
   .nav-links {
-    display: none;
+    order: 3;
+    width: 100%;
+    overflow-x: auto;
+    padding: 0.2rem 0.4rem 0.45rem;
+    font-size: 0.82rem;
   }
 
   .find-row {

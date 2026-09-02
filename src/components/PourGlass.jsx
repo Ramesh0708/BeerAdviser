@@ -3,14 +3,14 @@ import { useId } from "react";
 
 export default function PourGlass({ fill = 62, color = "#f0c75e", size = 88, pouring = false }) {
   const uid = useId().replace(/:/g, "");
-  const h = size * 1.35;
-  const liquidH = (fill / 100) * (h - 18);
+  const liquidH = Math.max(8, (fill / 100) * 92);
+  const foamY = 110 - liquidH;
   return (
     <svg
       width={size}
-      height={h}
-      viewBox={`0 0 88 ${88 * 1.35}`}
-      className="pour-glass"
+      height={size * 1.35}
+      viewBox="0 0 88 118.8"
+      className={`pour-glass ${pouring ? "is-pouring" : ""}`}
       aria-hidden="true"
     >
       <defs>
@@ -34,32 +34,18 @@ export default function PourGlass({ fill = 62, color = "#f0c75e", size = 88, pou
           x="20"
           width="48"
           fill={`url(#beer-${uid})`}
-          initial={{ y: 118, height: 0 }}
-          animate={{ y: 118 - liquidH, height: liquidH }}
+          initial={{ y: 110, height: 0 }}
+          animate={{ y: foamY, height: liquidH }}
           transition={{ type: "spring", stiffness: 60, damping: 18 }}
         />
-        <motion.ellipse
-          cx="44"
-          rx="20"
-          ry="6"
-          fill="#fff7ea"
-          animate={{
-            cy: 118 - liquidH,
-            scaleX: pouring ? [1, 1.08, 1] : 1,
-          }}
-          transition={{ duration: 1.4, repeat: pouring ? Infinity : 0 }}
-        />
-        {pouring &&
-          [0, 1, 2].map((i) => (
-            <motion.circle
-              key={i}
-              cx={34 + i * 8}
-              r="2.2"
-              fill="rgba(255,255,255,0.55)"
-              animate={{ cy: [90, 40], opacity: [0, 1, 0] }}
-              transition={{ duration: 1.1, delay: i * 0.2, repeat: Infinity }}
-            />
-          ))}
+        <ellipse cx="44" cy={foamY} rx="20" ry="6" fill="#fff7ea" />
+        {pouring && (
+          <>
+            <circle className="bubble b1" cx="36" cy="88" r="2.2" fill="rgba(255,255,255,0.55)" />
+            <circle className="bubble b2" cx="44" cy="96" r="2.2" fill="rgba(255,255,255,0.55)" />
+            <circle className="bubble b3" cx="52" cy="84" r="2.2" fill="rgba(255,255,255,0.55)" />
+          </>
+        )}
       </g>
       <path d="M70 28 Q86 40 78 70" fill="none" stroke="rgba(255,255,255,0.28)" strokeWidth="3" />
     </svg>
