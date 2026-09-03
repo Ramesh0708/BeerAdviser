@@ -31,14 +31,17 @@ function PerfectPour() {
   const [last, setLast] = useState(null);
   const [done, setDone] = useState(false);
   const raf = useRef(0);
+  const fillRef = useRef(8);
 
   useEffect(() => {
     if (!running) return undefined;
     const start = performance.now();
-    const from = fill;
+    const from = fillRef.current;
     const tick = (now) => {
       const t = Math.min(1, (now - start) / 2200);
-      setFill(from + (100 - from) * t);
+      const next = from + (100 - from) * t;
+      fillRef.current = next;
+      setFill(next);
       if (t < 1) raf.current = requestAnimationFrame(tick);
     };
     raf.current = requestAnimationFrame(tick);
@@ -49,17 +52,18 @@ function PerfectPour() {
     if (!running) return;
     setRunning(false);
     cancelAnimationFrame(raf.current);
-    const target = 72;
-    const miss = Math.abs(fill - target);
+    const current = fillRef.current;
+    const miss = Math.abs(current - 72);
     const gained = Math.max(0, Math.round(100 - miss * 4));
     const nextScore = score + gained;
     setScore(nextScore);
-    setLast({ fill: Math.round(fill), gained });
+    setLast({ fill: Math.round(current), gained });
     if (round >= 5) {
       setDone(true);
       writeBest("pour", nextScore);
     } else {
       setRound(round + 1);
+      fillRef.current = 8;
       setFill(8);
     }
   };
