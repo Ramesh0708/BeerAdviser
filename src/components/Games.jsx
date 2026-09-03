@@ -359,20 +359,24 @@ export default function Games({ initialTab = "cards" }) {
           </button>
         ))}
       </div>
+      <div hidden={tab !== "cards"}>
+        <LastCard />
+      </div>
       <AnimatePresence mode="wait">
-        <motion.div
-          key={tab}
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -12 }}
-        >
-          {tab === "cards" && <LastCard />}
-          {tab === "pairs" && <HousePairs />}
-          {tab === "spin" && <SpinBottle />}
-          {tab === "pour" && <PerfectPour />}
-          {tab === "bubbles" && <BubbleRush />}
-          {tab === "trivia" && <PubTrivia />}
-        </motion.div>
+        {tab !== "cards" && (
+          <motion.div
+            key={tab}
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -12 }}
+          >
+            {tab === "pairs" && <HousePairs />}
+            {tab === "spin" && <SpinBottle />}
+            {tab === "pour" && <PerfectPour />}
+            {tab === "bubbles" && <BubbleRush />}
+            {tab === "trivia" && <PubTrivia />}
+          </motion.div>
+        )}
       </AnimatePresence>
     </section>
   );
