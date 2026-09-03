@@ -30,7 +30,7 @@ export default function Nav({ vaultCount }) {
   return (
     <motion.nav className="nav" style={{ x: sx, y: sy }}>
       <a href="#top" className="brand">
-        <img src="./icon.png?v=2026" alt="Beer Adviser" width="28" height="28" />
+        <img src="./beer-mark.png?v=2026b" alt="Beer Adviser" width="28" height="28" />
         Beer Adviser
         <span>2026</span>
       </a>
