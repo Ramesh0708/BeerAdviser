@@ -274,7 +274,7 @@ em {
 
 .house-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
   gap: 1rem;
 }
 
@@ -283,11 +283,11 @@ em {
   text-align: left;
   border: 1px solid var(--line);
   border-radius: 28px;
-  padding: 1.2rem;
+  padding: 1.1rem;
   color: var(--foam);
   cursor: pointer;
   overflow: hidden;
-  min-height: 210px;
+  min-height: 188px;
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
@@ -510,6 +510,216 @@ em {
   margin-top: 1rem;
 }
 
+.opt.good {
+  border-color: #7cffb2;
+  background: rgba(124, 255, 178, 0.12);
+}
+
+.opt.bad {
+  border-color: #ff6b6b;
+  background: rgba(255, 107, 107, 0.12);
+}
+
+.ad-slot {
+  width: min(1120px, calc(100% - 36px));
+  margin: 0 auto 1.2rem;
+  min-height: 90px;
+  border-radius: 22px;
+  overflow: hidden;
+}
+
+.ad-placeholder {
+  display: grid;
+  place-items: center;
+  gap: 0.2rem;
+  min-height: 90px;
+  border: 1px dashed var(--line);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--muted);
+  font-size: 0.85rem;
+  text-align: center;
+  padding: 1rem;
+}
+
+.ad-placeholder em {
+  font-size: 0.78rem;
+  color: #8d7d68;
+}
+
+.lore-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.2rem;
+}
+
+.lore-card {
+  border: 1px solid var(--line);
+  border-radius: 32px;
+  overflow: hidden;
+  background: var(--glass);
+}
+
+.lore-hero {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1.2rem;
+  align-items: center;
+  padding: 1.4rem;
+}
+
+.timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0 1.4rem 1rem;
+  display: grid;
+  gap: 0.7rem;
+}
+
+.timeline li {
+  display: grid;
+  grid-template-columns: 5.5rem 1fr;
+  gap: 0.8rem;
+  color: var(--muted);
+}
+
+.timeline strong {
+  color: var(--amber);
+}
+
+.lore-pours {
+  list-style: none;
+  margin: 0;
+  padding: 0 1.4rem 1.4rem;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.lore-pours span {
+  display: block;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.game-panel {
+  border: 1px solid var(--line);
+  border-radius: 32px;
+  padding: 1.4rem;
+  background: var(--glass);
+  display: grid;
+  gap: 1rem;
+  justify-items: start;
+}
+
+.game-meta,
+.game-flash {
+  color: var(--muted);
+  margin: 0;
+}
+
+.pour-arena {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 180px;
+}
+
+.pour-target {
+  position: absolute;
+  left: 18%;
+  right: 18%;
+  top: 28%;
+  height: 14%;
+  border: 1px dashed rgba(245, 185, 66, 0.7);
+  border-radius: 8px;
+  pointer-events: none;
+}
+
+.bubble-arena {
+  position: relative;
+  width: min(100%, 560px);
+  height: 260px;
+  border-radius: 24px;
+  overflow: hidden;
+  background: radial-gradient(circle at 50% 120%, rgba(245, 185, 66, 0.18), transparent 50%),
+    #120e09;
+  border: 1px solid var(--line);
+}
+
+.foam-dot {
+  position: absolute;
+  bottom: 12px;
+  border: none;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #fff, #f5d9a0);
+  cursor: pointer;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+
+.foam-dot.gold {
+  background: radial-gradient(circle at 30% 30%, #fff6d6, #e39a18);
+}
+
+.wheel-wrap {
+  position: relative;
+  width: 260px;
+  height: 260px;
+}
+
+.wheel-pointer {
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  z-index: 2;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 18px solid var(--amber);
+  transform: translateX(-50%);
+}
+
+.wheel {
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  background: conic-gradient(
+    #2a2208 0 45deg,
+    #10261a 45deg 90deg,
+    #2a0c10 90deg 135deg,
+    #082016 135deg 180deg,
+    #241c08 180deg 225deg,
+    #1a120c 225deg 270deg,
+    #072214 270deg 315deg,
+    #2a1c08 315deg 360deg
+  );
+  border: 4px solid rgba(255, 230, 190, 0.25);
+  position: relative;
+}
+
+.wheel-slice {
+  position: absolute;
+  left: 50%;
+  top: 18px;
+  width: 70px;
+  margin-left: -35px;
+  text-align: center;
+  font-size: 0.68rem;
+  font-weight: 600;
+  transform-origin: 50% 112px;
+}
+
+.game-end {
+  display: grid;
+  gap: 0.8rem;
+}
+
+@media (max-width: 900px) {
+  .lore-hero {
+    grid-template-columns: 1fr;
+  }
+}
+
 .opt {
   text-align: left;
   background: #14100c;
@@ -639,7 +849,6 @@ em {
 
 @media (max-width: 900px) {
   .hero,
-  .house-grid,
   .card-grid {
     grid-template-columns: 1fr;
   }

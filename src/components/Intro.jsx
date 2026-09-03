@@ -32,7 +32,7 @@ export default function Intro({ onEnter }) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -30, scale: 0.98 }}
           >
-            <p className="eyebrow">Beer Adviser · Est. APK · Reborn 2026</p>
+            <p className="eyebrow">Beer Adviser · Cellar 2026</p>
             <h1>
               Are you old enough
               <br />

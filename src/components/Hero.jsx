@@ -1,5 +1,6 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import { BEERS, HOUSES } from "../data/beers.js";
 import PourGlass from "./PourGlass.jsx";
 
 export default function Hero() {
@@ -16,7 +17,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
         >
-          From a Head First Android APK · rebuilt for 2026
+          Cellar · arcade · taste DNA · 2026
         </motion.p>
         <motion.h1
           initial={{ opacity: 0, y: 24 }}
@@ -33,8 +34,8 @@ export default function Hero() {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.25 }}
         >
-          Kingfisher, Bira, Budweiser, Tuborg — the same four houses from the original
-          Beer Adviser app, now with mood matching, taste DNA, a vault, and way more foam.
+          Twelve houses from Kingfisher to Guinness, with histories, food pairings, mood matching,
+          a taste quiz, and games for the table.
         </motion.p>
         <div className="hero-cta">
           <motion.a
@@ -45,15 +46,15 @@ export default function Hero() {
           >
             Find Beer!
           </motion.a>
-          <a className="btn ghost" href="#quiz">
-            Take the taste quiz
+          <a className="btn ghost" href="#arcade">
+            Play the arcade
           </a>
         </div>
         <ul className="stats">
           {[
-            ["4", "houses"],
-            ["16", "pours"],
-            ["8", "moods"],
+            [String(HOUSES.length), "houses"],
+            [String(BEERS.length), "pours"],
+            ["4", "games"],
             ["∞", "nights"],
           ].map(([n, l]) => (
             <li key={l}>
@@ -76,7 +77,7 @@ export default function Hero() {
           animate={{ y: [0, -12, 0] }}
           transition={{ duration: 3.2, repeat: Infinity }}
         >
-          Original APK logic still inside
+          Histories, hops, and high scores
         </motion.div>
       </motion.div>
     </section>

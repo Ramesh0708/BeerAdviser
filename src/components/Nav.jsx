@@ -3,6 +3,8 @@ import { useEffect } from "react";
 
 const links = [
   { href: "#advisor", label: "Find Beer" },
+  { href: "#houses", label: "Houses" },
+  { href: "#arcade", label: "Games" },
   { href: "#mood", label: "Mood Lab" },
   { href: "#quiz", label: "Taste DNA" },
   { href: "#catalog", label: "Cellar" },
@@ -39,8 +41,8 @@ export default function Nav({ vaultCount }) {
           </a>
         ))}
       </div>
-      <a className="btn tiny" href="./beeradviser.apk" download>
-        Get the APK
+      <a className="btn tiny" href="#arcade">
+        Play
       </a>
     </motion.nav>
   );
