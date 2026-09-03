@@ -5,6 +5,7 @@ const links = [
   { href: "#advisor", label: "Find Beer" },
   { href: "#houses", label: "Houses" },
   { href: "#arcade", label: "Games" },
+  { href: "#cards", label: "Cards" },
   { href: "#mood", label: "Mood Lab" },
   { href: "#quiz", label: "Taste DNA" },
   { href: "#catalog", label: "Cellar" },

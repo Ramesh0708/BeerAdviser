@@ -889,14 +889,3 @@ export const TRIVIA = [
     answer: 1,
   },
 ];
-
-export const SPIN_SLICES = [
-  { label: "Lime it", copy: "Grab a Corona energy: lime wedge, no excuses." },
-  { label: "Toast", copy: "Stand up and toast the room. Make it weird. Make it kind." },
-  { label: "Black stuff", copy: "Describe Guinness in four words. No “dark” allowed." },
-  { label: "Match night", copy: "Name a Kingfisher pairing that isn’t peanuts." },
-  { label: "Two truths", copy: "Two beer facts, one lie. Table votes." },
-  { label: "Slow pour", copy: "Mime a 119-second Guinness pour. Commit." },
-  { label: "House pick", copy: "Let the person on your left pick your next cellar pour." },
-  { label: "Hydrate", copy: "Water round. Champions do this. Then come back." },
-];

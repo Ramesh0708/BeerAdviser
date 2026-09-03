@@ -35,7 +35,7 @@ export default function Hero() {
           transition={{ delay: 0.25 }}
         >
           Twelve houses from Kingfisher to Guinness, with histories, food pairings, mood matching,
-          a taste quiz, and games for the table.
+          a taste quiz, Last Card with friends, and a bottle that deals truth or dare.
         </motion.p>
         <div className="hero-cta">
           <motion.a
@@ -54,7 +54,7 @@ export default function Hero() {
           {[
             [String(HOUSES.length), "houses"],
             [String(BEERS.length), "pours"],
-            ["4", "games"],
+            ["6", "games"],
             ["∞", "nights"],
           ].map(([n, l]) => (
             <li key={l}>

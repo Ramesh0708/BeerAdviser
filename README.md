@@ -1,6 +1,6 @@
 # Beer Adviser 2026
 
-Pick a house, get the pour — then play Perfect Pour, Bubble Rush, Pub Trivia, or Spin the Tap.
+Pick a house, get the pour — then play Last Card with friends (share a link, sit at one table, keep a scoreboard), House Pairs, Spin the Bottle (truth / dare / tasks), Perfect Pour, Bubble Rush, or Pub Trivia.
 
 Twelve houses (Kingfisher, Bira, Budweiser, Tuborg, Heineken, Corona, Guinness, Carlsberg, Stella Artois, Hoegaarden, Asahi, Haywards) with histories, pairings, mood matching, and a vault.
 

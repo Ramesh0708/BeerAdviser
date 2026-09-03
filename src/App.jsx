@@ -15,13 +15,37 @@ import Quiz from "./components/Quiz.jsx";
 import Vault from "./components/Vault.jsx";
 import { useFavorites } from "./hooks/useFavorites.js";
 
+function arcadeTabFromHash(hash = location.hash) {
+  const raw = hash.replace(/^#/, "").toLowerCase();
+  if (raw.startsWith("cards")) return "cards";
+  if (raw.startsWith("pairs")) return "pairs";
+  if (raw.startsWith("spin")) return "spin";
+  return null;
+}
+
 export default function App() {
   const [ready, setReady] = useState(() => sessionStorage.getItem("ba26-in") === "1");
   const { ids, toggle, has } = useFavorites();
   const [compare, setCompare] = useState([]);
+  const [arcadeTab, setArcadeTab] = useState(() => arcadeTabFromHash() || "cards");
 
   useEffect(() => {
     document.body.classList.toggle("locked", !ready);
+  }, [ready]);
+
+  useEffect(() => {
+    if (!ready) return undefined;
+    const apply = () => {
+      const tab = arcadeTabFromHash();
+      if (tab) setArcadeTab(tab);
+      const raw = location.hash.replace(/^#/, "").toLowerCase();
+      if (raw.startsWith("cards") || raw.startsWith("pairs") || raw.startsWith("spin") || raw === "arcade") {
+        requestAnimationFrame(() => document.getElementById("arcade")?.scrollIntoView({ behavior: "smooth" }));
+      }
+    };
+    apply();
+    window.addEventListener("hashchange", apply);
+    return () => window.removeEventListener("hashchange", apply);
   }, [ready]);
 
   const onEnter = () => {
@@ -49,7 +73,7 @@ export default function App() {
             <AdSlot slot={ADSENSE_SLOTS.banner} className="ad-banner" />
             <Advisor favored={has} onFav={toggle} compare={compare} onCompare={onCompare} />
             <BrandLore />
-            <Games />
+            <Games initialTab={arcadeTab} />
             <AdSlot slot={ADSENSE_SLOTS.inline} className="ad-inline" />
             <MoodLab favored={has} onFav={toggle} compare={compare} onCompare={onCompare} />
             <Quiz favored={has} onFav={toggle} compare={compare} onCompare={onCompare} />

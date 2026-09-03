@@ -14,6 +14,8 @@ export default function Footer() {
         <a href="#advisor">Find Beer</a>
         <a href="#houses">Houses</a>
         <a href="#arcade">Games</a>
+        <a href="#cards">Cards</a>
+        <a href="#spin">Bottle</a>
         <a href="#quiz">Taste DNA</a>
       </div>
       <motion.p className="legal" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }}>

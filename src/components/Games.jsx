@@ -1,13 +1,18 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-import { SPIN_SLICES, TRIVIA } from "../data/beers.js";
+import { BOTTLE_SLICES, promptForSlice } from "../data/party.js";
+import { TRIVIA } from "../data/beers.js";
+import HousePairs from "./HousePairs.jsx";
+import LastCard from "./LastCard.jsx";
 import PourGlass from "./PourGlass.jsx";
 
 const GAMES = [
+  { id: "cards", label: "Last Card", emoji: "🃏" },
+  { id: "pairs", label: "House Pairs", emoji: "🂠" },
+  { id: "spin", label: "Spin the Bottle", emoji: "🍾" },
   { id: "pour", label: "Perfect Pour", emoji: "🍺" },
   { id: "bubbles", label: "Bubble Rush", emoji: "🫧" },
   { id: "trivia", label: "Pub Trivia", emoji: "🧠" },
-  { id: "spin", label: "Spin the Tap", emoji: "🎡" },
 ];
 
 function bestKey(id) {
@@ -264,70 +269,87 @@ function PubTrivia() {
   );
 }
 
-function SpinTap() {
+function SpinBottle() {
   const [rot, setRot] = useState(0);
   const [spinning, setSpinning] = useState(false);
   const [landed, setLanded] = useState(null);
 
   const spin = () => {
     if (spinning) return;
-    const idx = Math.floor(Math.random() * SPIN_SLICES.length);
-    const extra = 360 * (5 + Math.floor(Math.random() * 3));
-    const slice = 360 / SPIN_SLICES.length;
-    const next = extra + (360 - idx * slice) - slice / 2;
+    const idx = Math.floor(Math.random() * BOTTLE_SLICES.length);
+    const extra = 360 * (6 + Math.floor(Math.random() * 3));
+    const slice = 360 / BOTTLE_SLICES.length;
+    const target = idx * slice;
     setSpinning(true);
     setLanded(null);
-    setRot((r) => r + next);
+    setRot((r) => {
+      const current = ((r % 360) + 360) % 360;
+      const delta = (target - current + 360) % 360;
+      return r + extra + delta;
+    });
     setTimeout(() => {
-      setLanded(SPIN_SLICES[idx]);
+      const sliceInfo = BOTTLE_SLICES[idx];
+      setLanded({ slice: sliceInfo, prompt: promptForSlice(sliceInfo.id) });
       setSpinning(false);
     }, 2800);
   };
 
+  const conic = BOTTLE_SLICES.map((s, i) => {
+    const a = 360 / BOTTLE_SLICES.length;
+    return `${s.hue} ${i * a}deg ${(i + 1) * a}deg`;
+  }).join(",");
+
   return (
-    <div className="game-panel">
-      <p className="eyebrow">Party wheel. Hydrate slices count double in real life.</p>
-      <div className="wheel-wrap">
-        <div className="wheel-pointer" />
+    <div className="game-panel bottle-panel">
+      <p className="eyebrow">Spin the bottle · truth, dare, or a table task</p>
+      <p className="game-meta">Point it at someone in the room — then spin for their prompt.</p>
+      <div className="bottle-ring" style={{ background: `conic-gradient(${conic})` }}>
+        {BOTTLE_SLICES.map((s, i) => (
+          <span
+            key={s.id}
+            className="bottle-label"
+            style={{ transform: `rotate(${i * (360 / BOTTLE_SLICES.length)}deg)` }}
+          >
+            {s.label}
+          </span>
+        ))}
         <motion.div
-          className="wheel"
+          className="bottle"
           animate={{ rotate: rot }}
-          transition={{ duration: 2.7, ease: [0.15, 0.8, 0.1, 1] }}
+          transition={{ duration: 2.7, ease: [0.12, 0.7, 0.1, 1] }}
         >
-          {SPIN_SLICES.map((s, i) => (
-            <span
-              key={s.label}
-              className="wheel-slice"
-              style={{ transform: `rotate(${i * (360 / SPIN_SLICES.length)}deg)` }}
-            >
-              {s.label}
-            </span>
-          ))}
+          <div className="bottle-neck" />
+          <div className="bottle-body">🍾</div>
         </motion.div>
       </div>
       <button className="btn primary big" onClick={spin} disabled={spinning}>
-        {spinning ? "Spinning…" : "Spin the tap"}
+        {spinning ? "Spinning…" : "Spin the bottle"}
       </button>
       {landed && (
-        <motion.p className="game-flash" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}>
-          <strong>{landed.label}.</strong> {landed.copy}
-        </motion.p>
+        <motion.div className="bottle-result" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
+          <p className="eyebrow">{landed.prompt.kind}</p>
+          <h3>{landed.prompt.text}</h3>
+        </motion.div>
       )}
     </div>
   );
 }
 
-export default function Games() {
-  const [tab, setTab] = useState("pour");
+export default function Games({ initialTab = "cards" }) {
+  const [tab, setTab] = useState(initialTab);
+  useEffect(() => {
+    setTab(initialTab);
+  }, [initialTab]);
   return (
     <section id="arcade" className="section arcade">
-      <div className="section-head">
+      <div className="section-head" id="cards">
         <p className="eyebrow">Arcade</p>
         <h2>
           Games for the <em>table, the group chat, the wait</em>
         </h2>
         <p className="lede">
-          Perfect pours, bubble rushes, pub trivia, and a tap wheel. Scores live in this browser.
+          Start Last Card, copy the link, and friends sit down on this site. Match houses in
+          Pairs, or spin the bottle for truth, dare, and chaotic little tasks.
         </p>
       </div>
       <div className="mood-row">
@@ -344,10 +366,12 @@ export default function Games() {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -12 }}
         >
+          {tab === "cards" && <LastCard />}
+          {tab === "pairs" && <HousePairs />}
+          {tab === "spin" && <SpinBottle />}
           {tab === "pour" && <PerfectPour />}
           {tab === "bubbles" && <BubbleRush />}
           {tab === "trivia" && <PubTrivia />}
-          {tab === "spin" && <SpinTap />}
         </motion.div>
       </AnimatePresence>
     </section>

@@ -660,53 +660,307 @@ em {
   background: radial-gradient(circle at 30% 30%, #fff6d6, #e39a18);
 }
 
-.wheel-wrap {
-  position: relative;
-  width: 260px;
-  height: 260px;
+.field {
+  display: grid;
+  gap: 0.35rem;
+  color: var(--muted);
+  font-size: 0.85rem;
+  width: min(100%, 360px);
 }
 
-.wheel-pointer {
-  position: absolute;
-  top: -8px;
-  left: 50%;
-  z-index: 2;
-  width: 0;
-  height: 0;
-  border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
-  border-top: 18px solid var(--amber);
-  transform: translateX(-50%);
+.field input {
+  background: #16110c;
+  border: 1px solid var(--line);
+  color: var(--foam);
+  border-radius: 16px;
+  padding: 0.75rem 1rem;
 }
 
-.wheel {
-  width: 260px;
-  height: 260px;
-  border-radius: 50%;
-  background: conic-gradient(
-    #2a2208 0 45deg,
-    #10261a 45deg 90deg,
-    #2a0c10 90deg 135deg,
-    #082016 135deg 180deg,
-    #241c08 180deg 225deg,
-    #1a120c 225deg 270deg,
-    #072214 270deg 315deg,
-    #2a1c08 315deg 360deg
-  );
-  border: 4px solid rgba(255, 230, 190, 0.25);
-  position: relative;
+.card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
 }
 
-.wheel-slice {
-  position: absolute;
-  left: 50%;
-  top: 18px;
-  width: 70px;
-  margin-left: -35px;
+.invite-banner {
+  margin: 0;
+  padding: 0.75rem 1rem;
+  border-radius: 16px;
+  background: rgba(245, 185, 66, 0.12);
+  border: 1px solid rgba(245, 185, 66, 0.28);
+}
+
+.bottle-panel {
+  justify-items: center;
   text-align: center;
-  font-size: 0.68rem;
-  font-weight: 600;
-  transform-origin: 50% 112px;
+}
+
+.bottle-ring {
+  position: relative;
+  width: min(280px, 80vw);
+  height: min(280px, 80vw);
+  border-radius: 50%;
+  border: 6px solid rgba(255, 230, 190, 0.28);
+  box-shadow: inset 0 0 0 46px rgba(9, 7, 4, 0.55), var(--shadow);
+}
+
+.bottle-label {
+  position: absolute;
+  left: 50%;
+  top: 14px;
+  width: 72px;
+  margin-left: -36px;
+  text-align: center;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #1a1208;
+  transform-origin: 50% 126px;
+}
+
+.bottle {
+  position: absolute;
+  inset: 18%;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 30%, #2a220c, #090704 70%);
+}
+
+.bottle-neck {
+  position: absolute;
+  top: 8%;
+  width: 14px;
+  height: 38%;
+  border-radius: 8px 8px 2px 2px;
+  background: linear-gradient(#fff6e8, #c9a24a);
+}
+
+.bottle-body {
+  font-size: 2.4rem;
+  line-height: 1;
+  transform: translateY(10px);
+}
+
+.bottle-result {
+  max-width: 420px;
+}
+
+.bottle-result h3 {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: 1.5rem;
+}
+
+.lc-head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.lc-share {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.lc-share code {
+  max-width: min(100%, 280px);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.lc-board {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  width: 100%;
+}
+
+.lc-board li {
+  display: grid;
+  gap: 0.15rem;
+  min-width: 120px;
+  padding: 0.7rem 0.85rem;
+  border-radius: 16px;
+  border: 1px solid var(--line);
+  background: #120e09;
+}
+
+.lc-board li.on {
+  border-color: var(--amber);
+  box-shadow: 0 0 0 1px var(--amber);
+}
+
+.lc-board em,
+.lc-board span {
+  font-style: normal;
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.lc-table {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.lc-hand {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  width: 100%;
+}
+
+.lc-card {
+  width: 58px;
+  height: 82px;
+  border: 0;
+  border-radius: 10px;
+  color: #fff;
+  font-weight: 800;
+  font-size: 1.1rem;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35);
+  cursor: pointer;
+}
+
+.lc-card:disabled {
+  cursor: default;
+  opacity: 0.95;
+}
+
+.lc-card.sel {
+  outline: 2px solid var(--foam);
+  transform: translateY(-6px);
+}
+
+.lc-card.red {
+  background: linear-gradient(#e2554a, #9c2218);
+}
+
+.lc-card.yellow {
+  background: linear-gradient(#ffd369, #c48a12);
+  color: #1a1208;
+}
+
+.lc-card.green {
+  background: linear-gradient(#3dff88, #157a3e);
+}
+
+.lc-card.blue {
+  background: linear-gradient(#6aa7ff, #1d4f9e);
+}
+
+.lc-card.wild {
+  background: conic-gradient(#e2554a, #ffd369, #3dff88, #6aa7ff, #e2554a);
+}
+
+.lc-card.back,
+.lc-card.pile {
+  background: repeating-linear-gradient(135deg, #2a1c0c, #2a1c0c 6px, #1a1208 6px, #1a1208 12px);
+  color: var(--amber);
+  font-size: 0.62rem;
+  letter-spacing: 0.04em;
+}
+
+.lc-log {
+  margin: 0;
+  padding-left: 1.1rem;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.color-pick {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.swatch {
+  border: 0;
+  border-radius: 999px;
+  padding: 0.45rem 0.8rem;
+  color: #fff;
+  text-transform: capitalize;
+  cursor: pointer;
+}
+
+.swatch.red {
+  background: #c0392b;
+}
+
+.swatch.yellow {
+  background: #d4a017;
+  color: #1a1208;
+}
+
+.swatch.green {
+  background: #1e8a4c;
+}
+
+.swatch.blue {
+  background: #1d5c9e;
+}
+
+.scoreboard {
+  width: min(100%, 420px);
+  padding: 0.9rem 1rem;
+  border-radius: 20px;
+  border: 1px solid var(--line);
+  background: #120e09;
+}
+
+.scoreboard ol {
+  margin: 0.4rem 0 0;
+  padding-left: 1.1rem;
+}
+
+.scoreboard li {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.25rem 0;
+  color: var(--muted);
+}
+
+.scoreboard strong {
+  color: var(--foam);
+}
+
+.pairs-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(64px, 1fr));
+  gap: 0.6rem;
+  width: min(100%, 480px);
+}
+
+.pair-card {
+  min-height: 88px;
+  border-radius: 16px;
+  border: 1px solid var(--line);
+  background: #16110c;
+  color: var(--muted);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.pair-card.up {
+  color: var(--foam);
+  background: #22180f;
+}
+
+.pair-card.got {
+  opacity: 0.55;
 }
 
 .game-end {
