@@ -30,7 +30,7 @@ export default function Catalog({ favored, onFav, compare, onCompare }) {
       <div className="section-head">
         <p className="eyebrow">The cellar</p>
         <h2>
-          Every pour from the <em>BeerExpert</em>
+          Every pour in the <em>cellar</em>
         </h2>
       </div>
       <div className="filters">

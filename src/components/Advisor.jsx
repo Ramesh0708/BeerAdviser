@@ -23,13 +23,13 @@ export default function Advisor({ favored, onFav, compare, onCompare }) {
   return (
     <section id="advisor" className="section advisor">
       <div className="section-head">
-        <p className="eyebrow">The original move</p>
+        <p className="eyebrow">The move</p>
         <h2>
           Choose a house, then hit <em>Find Beer!</em>
         </h2>
         <p className="lede">
-          Same expert class as the Android app — Kingfisher, Bira, Budweiser, Tuborg —
-          now with glass physics instead of a spinner.
+          Twelve houses on the tap list — pick one and we’ll line up the pours, pairings, and
+          strength.
         </p>
       </div>
 
@@ -72,7 +72,7 @@ export default function Advisor({ favored, onFav, compare, onCompare }) {
           pouring={pouring}
         />
         <div>
-          <p className="eyebrow">BeerExpert.java says</p>
+          <p className="eyebrow">The cellar says</p>
           <h3>{active?.name}</h3>
           <p>{active?.vibe}</p>
         </div>
@@ -89,7 +89,7 @@ export default function Advisor({ favored, onFav, compare, onCompare }) {
       <AnimatePresence mode="wait">
         {!poured && (
           <motion.p key="empty" className="empty" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-            No beers selected — tap Find Beer! like it is 2011 again.
+            No beers selected — tap Find Beer! and we’ll pour the list.
           </motion.p>
         )}
         {poured && (

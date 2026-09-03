@@ -5,4 +5,7 @@ dist
 .vite
 .idea
 .vscode
+.netlify
+.env
+.env.local
 public/beeradviser.apk

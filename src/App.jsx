@@ -1,8 +1,12 @@
 import { AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
+import { ADSENSE_SLOTS } from "./ads.config.js";
 import Advisor from "./components/Advisor.jsx";
+import AdSlot, { AdSenseBoot } from "./components/AdSlot.jsx";
+import BrandLore from "./components/BrandLore.jsx";
 import Catalog from "./components/Catalog.jsx";
 import Footer from "./components/Footer.jsx";
+import Games from "./components/Games.jsx";
 import Hero from "./components/Hero.jsx";
 import Intro from "./components/Intro.jsx";
 import MoodLab from "./components/MoodLab.jsx";
@@ -35,13 +39,18 @@ export default function App() {
 
   return (
     <>
+      <AdSenseBoot />
       <AnimatePresence>{!ready && <Intro onEnter={onEnter} />}</AnimatePresence>
       {ready && (
         <>
           <Nav vaultCount={ids.length} />
           <main>
             <Hero />
+            <AdSlot slot={ADSENSE_SLOTS.banner} className="ad-banner" />
             <Advisor favored={has} onFav={toggle} compare={compare} onCompare={onCompare} />
+            <BrandLore />
+            <Games />
+            <AdSlot slot={ADSENSE_SLOTS.inline} className="ad-inline" />
             <MoodLab favored={has} onFav={toggle} compare={compare} onCompare={onCompare} />
             <Quiz favored={has} onFav={toggle} compare={compare} onCompare={onCompare} />
             <Catalog favored={has} onFav={toggle} compare={compare} onCompare={onCompare} />
