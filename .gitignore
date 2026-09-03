@@ -9,3 +9,4 @@ dist
 .env
 .env.local
 public/beeradviser.apk
+/beeradviser.apk
